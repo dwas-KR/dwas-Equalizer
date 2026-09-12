@@ -34,7 +34,6 @@
 | Legion Y700 Gen 2 (2023) | 8.8 | `TB320FC` | Chinese ROM(PRC) only (Global ROM(ROW) unverified) |
 | Legion Y700 Gen 4 (2025) | 8.8 | `TB322FC` | Chinese ROM(PRC) only (Global ROM(ROW) unverified) |
 | Legion Y700 Gen 5 (2026) | 8.8 | `TB323FU` | Chinese ROM(PRC) only (Global ROM(ROW) unverified) |
-| Xiaoxin Pad 2024 | 11 |  `TB331FC` | O |
 | Xiaoxin Pad 11 (2025) | 11 | `TB335FC` | Chinese & Global ROMs supported (TB336FU) |
 | Xiaoxin Pad Pro GT 11 | 11 | `TB710FU` | Chinese ROM(PRC) only (Global ROM(ROW) unverified) |
 | Xiaoxin Pad 12.1 (2025) | 12.1 | `TB365FC` | Chinese & Global ROMs supported (TB361FU) |

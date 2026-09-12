@@ -1,0 +1,22 @@
+name: Feature request
+description: Suggest a dwas_EQ improvement
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: device
+    attributes:
+      label: Relevant device / firmware information
+      description: Optional. Include this when the feature is related to audio routing or device compatibility.

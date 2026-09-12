@@ -1,0 +1,50 @@
+name: Bug report
+description: Report a reproducible dwas_EQ problem
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: input
+    id: model
+    attributes:
+      label: Device model
+      placeholder: TB371FC
+    validations:
+      required: true
+  - type: input
+    id: android
+    attributes:
+      label: Android / ROM version
+      placeholder: Android 14 / PRC ROM
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: dwas_EQ version
+      placeholder: 0.4.0
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Describe the exact steps that trigger the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Remove personal information, identifiers and secrets before attaching public logs.

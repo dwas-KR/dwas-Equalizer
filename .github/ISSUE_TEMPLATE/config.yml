@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Releases
+    url: https://github.com/dwas-KR/dwas-Equalizer/releases
+    about: Download official dwas_EQ release assets here.

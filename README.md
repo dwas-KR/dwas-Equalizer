@@ -17,105 +17,53 @@
 
 ## Overview
 
-dwas_EQ is an independently implemented Android audio-control project for supported Lenovo tablets. It combines a device-aware equalizer path with Android standard audio effects and selects safe routes according to the detected device/audio topology.
+| Item | Details |
+|---|---|
+| **Project** | **dwas_EQ** |
+| **Description** | An independently implemented Android audio-control project for supported Lenovo tablets. dwas_EQ combines a device-aware equalizer path with Android standard audio effects and selects safe backends and fallback routes according to the detected device and audio topology. |
+| **Application ID** | `kr.dwas.dwas_EQ` |
+| **Android Version** | Android 13 ~ 17 / API 33 ~ 37|
+| **UI Framework** | Kotlin + Jetpack Compose |
+| **Languages** | Korean, English, Japanese, Traditional Chinese, Taiwan Chinese, Russian, Vietnamese |
+| **Proprietary Components** | This project does **not** bundle Lenovo/Dolby proprietary APKs, DEX files, native libraries, tuning databases, or extracted proprietary binaries. |
 
-- Application ID: `kr.dwas.dwas_EQ`
-- Minimum Android version: Android 13 / API 33
-- Target / compile SDK: API 37
-- UI: Kotlin + Jetpack Compose
-- Languages: Korean, English, Japanese, Traditional Chinese, Taiwan Chinese, Russian and Vietnamese
-- Current release: `v0.4.0`
+## Supported Devices
 
-The project does **not** bundle Lenovo/Dolby proprietary APK, DEX, native library, tuning database or extracted proprietary binary.
+| Device Name | Display size | Model | Application compatibility | 
+|---|---|---|---|
+| Legion Y700 Gen 2 (2023) | 8.8 | `TB320FC` | Chinese ROM(PRC) only (Global ROM(ROW) unverified) |
+| Legion Y700 Gen 4 (2025) | 8.8 | `TB322FC` | Chinese ROM(PRC) only (Global ROM(ROW) unverified) |
+| Legion Y700 Gen 5 (2026) | 8.8 | `TB323FU` | Chinese ROM(PRC) only (Global ROM(ROW) unverified) |
+| Xiaoxin Pad 2024 | 11 |  `TB331FC` | O |
+| Xiaoxin Pad 11 (2025) | 11 | `TB335FC` | Chinese & Global ROMs supported (TB336FU) |
+| Xiaoxin Pad Pro GT 11 | 11 | `TB710FU` | Chinese ROM(PRC) only (Global ROM(ROW) unverified) |
+| Xiaoxin Pad 12.1 (2025) | 12.1 | `TB365FC` | Chinese & Global ROMs supported (TB361FU) |
+| Xiaoxin Pad Pro 12.7 (2023) | 12.7 | `TB371FC` | O |
+| Xiaoxin Pad Pro 12.7 (2025) | 12.7 | `TB375FC` | Chinese & Global ROMs supported (TB373FU) |
+| Yoga Tab Plus AI | 12.7 | `TB520FU` | Chinese ROM(PRC) only (Global ROM(ROW) unverified) |
+| Xiaoxin Pad Pro 13 (2026) | 13 | `TB376FC` | Chinese & Global ROMs supported (TB390FU) |
+| Xiaoxin Pad Pro GT 13 (2026) | 13 | `TB378FC` | O |
+| Legion Y900 13 (2026) | 13 | `TB522FU` | Chinese ROM(PRC) only (Global ROM(ROW) unverified) |
+### Your assistance in testing other models would be highly appreciated.
+Link: https://github.com/dwas-KR/dwas-Equalizer/issues/1
 
-## Main features
+## Main Features
 
-- 9-band equalizer: `63 / 125 / 250 / 500 / 1k / 2k / 4k / 8k / 16k Hz`
-- Device-aware backend selection with safe fallback routing
-- Bass Boost
-- Headroom / attenuation
-- Limiter
-- Left / right channel balance
-- Virtualizer where the detected device route is verified safe
-- User presets and built-in presets
-- Optional wired ADB bridge for supported control paths
-- Runtime capability checks and fail-closed handling for known unsafe audio routes
-
-Preset Reverb is an experimental feature and is not treated as a required compatibility target.
-
-## Download
-
-Use the GitHub **Releases** page for installation files:
-
-**https://github.com/dwas-KR/dwas-Equalizer/releases**
-
-Recommended assets:
-
-- `dwas_EQ-v0.4.0.apk` — Android application
-- `dwas_EQ-v0.4.0-Windows-ADB-Helper.zip` — optional Windows helper scripts; requires Android Platform Tools / `adb` in PATH
-- `SHA256SUMS.txt` — release checksums
-
-Do not download an APK from the repository source tree. Release binaries are distributed from GitHub Releases.
-
-## Supported devices
-
-Compatibility is device- and firmware-dependent. A model being listed does not mean every optional effect is available on every firmware.
-
-Currently analyzed device families include:
-
-`TB320FC`, `TB322FC`, `TB323FU`, `TB331FC`, `TB335FC`, `TB336FU`, `TB361FU`, `TB365FC`, `TB371FC`, `TB373FU`, `TB375FC`, `TB376FC`, `TB378FC`, `TB390FU`, `TB520FU`, `TB522FU`, `TB710FU`.
-
-`TB320FU` is handled as an archive/device identity alias of `TB320FC` where applicable.
-
-See [Supported devices](docs/SUPPORTED_DEVICES.md) for current validation notes and restrictions.
-
-## Installation
-
-1. Download `dwas_EQ-v0.4.0.apk` from GitHub Releases.
-2. Install the APK on the tablet.
-3. Open dwas_EQ and review the detected device/backend state.
-4. Use the Equalizer master toggle and apply the desired curve.
-5. Enable only audio effects that are available for the detected device.
-
-For the optional Windows wired ADB bridge, see [Windows ADB bridge](docs/WINDOWS_ADB_BRIDGE.md).
-
-## Building from source
-
-Requirements:
-
-- JDK 17
-- Android SDK API 37
-- Internet access for the initial Gradle/dependency download
-
-Windows:
-
-```bat
-gradlew.bat clean :app:testDebugUnitTest :app:lintDebug :app:assembleDebug
-```
-
-Linux/macOS:
-
-```bash
-./gradlew clean :app:testDebugUnitTest :app:lintDebug :app:assembleDebug
-```
-
-The Gradle wrapper uses Gradle 9.4.1. See [Building](docs/BUILDING.md) for details.
-
-## Safety and compatibility policy
-
-dwas_EQ does not force every effect onto every device. When runtime evidence shows that an audio route is unavailable or unsafe, the corresponding option can be disabled instead of attempting an unverified implementation.
-
-Examples in the current compatibility database include:
-
-- TB371FC: Virtualizer is fail-closed because tested routes did not retain a safe audible effect.
-- TB373FU / TB375FC: Headroom, Limiter and Channel Balance are disabled on the known unsafe DynamicsProcessing topology.
-- TB522FU: limited captured data; runtime capability detection is used.
-
-This policy is intended to reduce audio break-up, silent output and false-positive controls.
-
-## Wired ADB helper
-
-The repository contains `tools/dwas_EQ_ADB_Enable.bat` and `tools/dwas_EQ_ADB_Disable.bat`. The recommended public Release helper ZIP does **not** bundle Google's `adb.exe`; install official Android Platform Tools and ensure `adb` is available in PATH.
+| Feature | Description |
+|---|---|
+| **9-band Equalizer** | `63 / 125 / 250 / 500 / 1k / 2k / 4k / 8k / 16k Hz` |
+| **Device-aware Backend Selection** | Selects an appropriate audio backend according to the detected device and audio topology. |
+| **Safe Fallback Routing** | Automatically uses safer fallback paths when the preferred audio route is unavailable or known to be unsafe. |
+| **Bass Boost** | Adjustable low-frequency enhancement. |
+| **Headroom / Attenuation** | Provides additional headroom by attenuating the audio signal where supported. |
+| **Limiter** | Helps control excessive output levels where supported. |
+| **Left / Right Balance** | Adjustable left and right channel balance. |
+| **Virtualizer** | Available only when the detected device and audio route have been verified as safe. |
+| **Equalizer Presets** | Includes built-in presets and user-created custom presets. |
+| **Wired ADB Bridge** | Optional wired ADB bridge for supported audio-control paths. |
+| **Runtime Capability Detection** | Checks available audio capabilities at runtime instead of relying only on static device information. |
+| **Fail-closed Safety Handling** | Known unsafe or unsupported audio routes are disabled rather than forced. |
+| **Preset Reverb** | Experimental feature. It is not treated as a required compatibility target. |
 
 ## Third-party notices
 
@@ -126,9 +74,3 @@ Android, Lenovo and Dolby names/trademarks belong to their respective owners. dw
 ## License
 
 No open-source license is selected in this publication package. Unless the repository owner adds a `LICENSE` file, publication of source code does not by itself grant additional copying, modification, or redistribution rights beyond rights provided by applicable law and the GitHub Terms of Service.
-
-## Links
-
-- Repository: https://github.com/dwas-KR/dwas-Equalizer
-- Releases: https://github.com/dwas-KR/dwas-Equalizer/releases
-- dwas GitHub: https://github.com/dwas-KR
